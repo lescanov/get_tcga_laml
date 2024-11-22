@@ -1,4 +1,4 @@
-name: tcgabiolinks
+name: tcgabiolink
 channels:
 - bioconda
 - conda-forge

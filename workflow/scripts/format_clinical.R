@@ -30,7 +30,7 @@ cbioportal <- cbioportal %>%
     os_status = ifelse(str_detect(os_status, "^0"), 0, 1)
   ) %>%
   mutate(
-    patient_id = as.numeric(patient_id)
+    patient_id = as.character(patient_id)
   )
 
 common_mutations <- c(
@@ -81,7 +81,7 @@ clinical <- publication %>%
       )
     )
   ) %>%
-  mutate(patient_id = as.numeric(patient_id)) %>%
+  mutate(patient_id = as.character(patient_id)) %>%
   inner_join(cbioportal, by = "patient_id")
 
 immunophenotyping <- immunophenotyping %>%

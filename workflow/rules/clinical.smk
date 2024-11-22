@@ -1,7 +1,8 @@
 rule format_clinical:
 	input:
 		cbioportal=config['cbioportal'],
-		publication=config['publication']
+		publication=config['publication'],
+		immunophenotyping=config['immunophenotyping']
 	output:
 		clinical=clinical
 	conda:
