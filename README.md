@@ -18,5 +18,9 @@ To get the results of this analysis you need to for this repository and have sna
 ```zsh
 snakemake --use-conda
 ```
+Or if running on an ARM64 machine, some packages are not available on anaconda so you must specify osx-64 as the architecture for the pipeline.
+```
+CONDA_SUBDIR=osx-64 snakemake --use-conda
+```
 
 To retrieve the raw sequencing data I am using the package TCGAbiolinks. The clinical data that is processed here was retrieved from the GDC and cbioportal.
