@@ -26,6 +26,7 @@ raw_counts <- raw_counts %>%
   ) %>%
   select(!contains(c("tpm", "fpkm"))) %>%
   rename_with(~ str_replace_all(., c("unstranded_TCGA-AB-" = "", "-.*" = ""))) %>%
+  rename_with(~ paste0("TCGA-AB-", .x, recycle0 = TRUE), !c(gene_id, gene_name, gene_type)) %>%
   mutate(gene_id = str_replace_all(gene_id, "\\..*", ""))
 
 write_csv(raw_counts, snakemake@output[["raw_counts"]])

@@ -11,6 +11,7 @@
     * updated patient subtyping
     * formatted columns
     * immunophenotyping
+    * re-formatted patient IDs to have consistent typing across analyses
 
 ### Dependencies and how to use
 To get the results of this analysis you need to for this repository and have snakemake installed. Once both are finished, run the following code in your terminal, at the project root directory:

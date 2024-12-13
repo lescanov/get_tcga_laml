@@ -20,6 +20,7 @@ raw_mirna_counts <- raw_mirna_counts %>%
     mirna_id = miRNA_ID,
     contains("read_count")
   ) %>%
-  rename_with(~ str_replace_all(., c("read_count_TCGA-AB-" = "", "-.*" = "")))
+  rename_with(~ str_replace_all(., c("read_count_TCGA-AB-" = "", "-.*" = ""))) %>%
+  rename_with(~ paste0("TCGA-AB-", .x, recycle0 = TRUE), !mirna_id)
 
 write_csv(raw_mirna_counts, snakemake@output[["raw_mirna_counts"]])

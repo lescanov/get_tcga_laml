@@ -25,7 +25,6 @@ cbioportal <- cbioportal %>%
     os_status = overall_survival_status
   ) %>%
   mutate(
-    patient_id = str_replace_all(patient_id, "TCGA-AB-", ""),
     efs_status = ifelse(str_detect(efs_status, "^0"), 0, 1),
     os_status = ifelse(str_detect(os_status, "^0"), 0, 1)
   ) %>%
@@ -61,6 +60,7 @@ clinical <- publication %>%
     all_of(common_mutations)
   ) %>%
   mutate(
+    patient_id = paste0("TCGA-AB-", patient_id),
     flt3 = case_when(
       str_detect(flt3, "p.D.*") ~ "TKD",
       str_detect(flt3, "in_.*") ~ "ITD",
@@ -95,9 +95,7 @@ immunophenotyping <- immunophenotyping %>%
       str_detect(immunophenotype, "HLA-DR Positive") ~ "positive",
       .default = NA
     )
-  ) %>%
-  mutate(patient_id = str_replace_all(patient_id, "TCGA-AB-", "")) %>%
-  mutate(patient_id = as.character(patient_id))
+  )
 
 clinical <- clinical %>%
   inner_join(immunophenotyping, by = "patient_id")
